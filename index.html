@@ -5,64 +5,74 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ashton Aleman</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    color: #1a1a1a;
-    background-color: #fafafa;
+    font-family: 'Inter', sans-serif;
+    background: #fdfdfd;
+    color: #111;
 }
 
 .container {
-    max-width: 900px;
+    max-width: 800px;
     margin: auto;
-    padding: 40px 20px;
-}
-
-h1, h2 {
-    font-weight: 600;
+    padding: 80px 20px;
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 5px;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
-h2 {
-    margin-top: 40px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-}
-
-.subtitle {
+.tagline {
+    font-size: 1.2rem;
     color: #555;
-    margin-bottom: 20px;
-}
-
-a {
-    color: #0077cc;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+    margin-bottom: 40px;
 }
 
 .section {
-    margin-bottom: 30px;
+    margin: 80px 0;
 }
 
-ul {
-    padding-left: 20px;
+.section h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
-.card {
-    background: white;
-    padding: 20px;
+p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #222;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+}
+
+a:hover {
+    border-bottom: 1px solid #000;
+}
+
+.highlight {
+    font-weight: 500;
+}
+
+.pub {
     margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.divider {
+    height: 1px;
+    background: #eee;
+    margin: 60px 0;
 }
 </style>
 </head>
@@ -71,62 +81,69 @@ ul {
 
 <div class="container">
 
-    <h1>Ashton M. Aleman</h1>
-    <div class="subtitle">
-        Chemical Engineering PhD Candidate | Stanford University<br>
-        <a href="mailto:amaleman@stanford.edu">amaleman@stanford.edu</a>
+    <h1>Ashton Aleman</h1>
+    <div class="tagline">
+        PhD Candidate in Chemical Engineering at Stanford University
     </div>
 
     <div class="section">
-        <h2>About</h2>
         <p>
-        PhD candidate in Chemical Engineering at Stanford University working on electrocatalysis and sustainable energy technologies. 
-        My research focuses on understanding degradation mechanisms in cobalt-based materials using multimodal, time-resolved characterization techniques.
+        I study how materials behave — and break — under the extreme conditions required for sustainable energy technologies.
+        My work focuses on <span class="highlight">electrocatalysis</span>, combining time-resolved experiments and advanced characterization
+        to understand how catalysts evolve in real time.
         </p>
     </div>
 
+    <div class="divider"></div>
+
     <div class="section">
         <h2>Research</h2>
-        <div class="card">
-            <strong>PhD Research – Stanford University</strong><br>
-            Advisor: Prof. Thomas F. Jaramillo<br><br>
-            Developing experimental platforms to monitor electrocatalytic activity, stability, and product generation in real time.
-            Combining in situ and ex situ techniques (ICP-MS, EC-MS, AFM, XRD, synchrotron XAS) to study material degradation.
-        </div>
+        <p>
+        My research aims to develop a holistic understanding of degradation mechanisms in cobalt-based electrocatalysts
+        for water splitting and fuel cell applications.
+        </p>
+
+        <p>
+        I design experimental platforms that simultaneously probe activity, stability, and product formation using techniques
+        such as ICP-MS, EC-MS, and synchrotron X-ray methods.
+        </p>
+
+        <p>
+        Ultimately, I’m interested in bridging fundamental electrochemistry with real-world energy systems.
+        </p>
     </div>
 
-    <div class="section">
-        <h2>Publications (Selected)</h2>
-        <ul>
-            <li>Aleman et al., <em>Advanced Energy Materials</em> (2025)</li>
-            <li>Aleman et al., <em>JACS</em> (2025)</li>
-            <li>Márquez et al., <em>Energy & Environmental Science</em> (2025)</li>
-            <li>Marin et al., <em>Joule</em> (2023)</li>
-        </ul>
-    </div>
+    <div class="divider"></div>
 
     <div class="section">
-        <h2>Awards</h2>
-        <ul>
-            <li>2026 CAS Future Leader</li>
-            <li>Stanford DARE Fellow (2025)</li>
-            <li>Stanford Community Impact Award (2025)</li>
-            <li>Stanford Service Leadership Award (2024)</li>
-        </ul>
+        <h2>Selected Publications</h2>
+
+        <div class="pub">Aleman et al. — <em>Advanced Energy Materials</em>, 2025</div>
+        <div class="pub">Aleman et al. — <em>Journal of the American Chemical Society</em>, 2025</div>
+        <div class="pub">Márquez et al. — <em>Energy & Environmental Science</em>, 2025</div>
+        <div class="pub">Marin et al. — <em>Joule</em>, 2023</div>
+
     </div>
 
+    <div class="divider"></div>
+
     <div class="section">
-        <h2>Teaching & Leadership</h2>
-        <ul>
-            <li>Teaching Assistant – Spectroscopy (Stanford)</li>
-            <li>Program Co-Director – SSTEP</li>
-            <li>Safety Chief – Jaramillo Group</li>
-        </ul>
+        <h2>Beyond Research</h2>
+        <p>
+        I am deeply committed to mentorship, outreach, and building inclusive scientific communities.
+        I co-direct programs that provide STEM opportunities to underserved students and actively contribute
+        to diversity and recruitment initiatives at Stanford.
+        </p>
     </div>
+
+    <div class="divider"></div>
 
     <div class="section">
         <h2>Contact</h2>
-        <p>Email: <a href="mailto:amaleman@stanford.edu">amaleman@stanford.edu</a></p>
+        <p>
+        <a href="mailto:amaleman@stanford.edu">amaleman@stanford.edu</a><br>
+        <a href="#">Google Scholar</a> / <a href="#">LinkedIn</a>
+    </p>
     </div>
 
 </div>
