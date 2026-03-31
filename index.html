@@ -3,150 +3,269 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ashton Aleman</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+:root {
+    --accent: #6c63ff;
+    --accent2: #00c2ff;
+}
+
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background: #fdfdfd;
+    background: linear-gradient(to bottom, #f8f9ff, #ffffff);
     color: #111;
+    overflow-x: hidden;
 }
 
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 80px 20px;
+/* NAV */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 40px;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
 }
 
-h1 {
-    font-size: 3rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.tagline {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 40px;
-}
-
-.section {
-    margin: 80px 0;
-}
-
-.section h2 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #222;
-}
-
-a {
-    color: #000;
+nav a {
+    margin-left: 20px;
     text-decoration: none;
-    border-bottom: 1px solid #ccc;
-}
-
-a:hover {
-    border-bottom: 1px solid #000;
-}
-
-.highlight {
+    color: #333;
     font-weight: 500;
 }
 
-.pub {
-    margin-bottom: 15px;
-    font-size: 0.95rem;
-    color: #444;
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.divider {
-    height: 1px;
-    background: #eee;
-    margin: 60px 0;
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    animation: fadeIn 1.2s ease;
 }
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* SECTION */
+.section {
+    max-width: 1000px;
+    margin: 120px auto;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* CARDS */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* IMAGE */
+img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+/* BUTTON */
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, var(--accent), var(--accent2));
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<nav>
+    <div><strong>AA</strong></div>
+    <div>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#outreach">Outreach</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-    <h1>Ashton Aleman</h1>
-    <div class="tagline">
-        PhD Candidate in Chemical Engineering at Stanford University
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="gradient-text">Ashton Aleman</h1>
+        <p>
+            PhD Candidate @ Stanford<br>
+            Studying how materials behave — and break — in sustainable energy systems
+        </p>
+        <a href="#" class="button">Download CV</a>
+    </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="section" id="research">
+    <h2>Research</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Electrocatalyst Stability</h3>
+            <p>Understanding degradation mechanisms in cobalt-based materials during OER and HER.</p>
+            <img src="https://images.unsplash.com/photo-1581091215367-59ab6b4d1c3a">
+        </div>
+
+        <div class="card">
+            <h3>Multimodal Characterization</h3>
+            <p>Combining EC-MS, ICP-MS, and synchrotron techniques for real-time insights.</p>
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69">
+        </div>
+
+        <div class="card">
+            <h3>Energy Systems</h3>
+            <p>Bridging fundamental electrochemistry with industrial-scale technologies.</p>
+            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231">
+        </div>
+
+    </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+    <h2>Selected Publications</h2>
+
+    <div class="card">
+        <p><strong>Advanced Energy Materials (2025)</strong><br>Time-resolved activity–durability relationships in Co catalysts</p>
     </div>
 
-    <div class="section">
-        <p>
-        I study how materials behave — and break — under the extreme conditions required for sustainable energy technologies.
-        My work focuses on <span class="highlight">electrocatalysis</span>, combining time-resolved experiments and advanced characterization
-        to understand how catalysts evolve in real time.
-        </p>
+    <div class="card">
+        <p><strong>JACS (2025)</strong><br>Multimodal in situ characterization of catalyst stability</p>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="section">
-        <h2>Research</h2>
-        <p>
-        My research aims to develop a holistic understanding of degradation mechanisms in cobalt-based electrocatalysts
-        for water splitting and fuel cell applications.
-        </p>
-
-        <p>
-        I design experimental platforms that simultaneously probe activity, stability, and product formation using techniques
-        such as ICP-MS, EC-MS, and synchrotron X-ray methods.
-        </p>
-
-        <p>
-        Ultimately, I’m interested in bridging fundamental electrochemistry with real-world energy systems.
-        </p>
+    <div class="card">
+        <p><strong>Energy & Environmental Science (2025)</strong><br>Insights into degradation in electrolysis systems</p>
     </div>
 
-    <div class="divider"></div>
+</section>
 
-    <div class="section">
-        <h2>Selected Publications</h2>
+<!-- OUTREACH -->
+<section class="section" id="outreach">
+    <h2>Leadership & Outreach</h2>
 
-        <div class="pub">Aleman et al. — <em>Advanced Energy Materials</em>, 2025</div>
-        <div class="pub">Aleman et al. — <em>Journal of the American Chemical Society</em>, 2025</div>
-        <div class="pub">Márquez et al. — <em>Energy & Environmental Science</em>, 2025</div>
-        <div class="pub">Marin et al. — <em>Joule</em>, 2023</div>
+    <div class="grid">
+
+        <div class="card">
+            <h3>SSTEP Program</h3>
+            <p>Co-directing STEM outreach to underserved high school students.</p>
+        </div>
+
+        <div class="card">
+            <h3>Mentorship</h3>
+            <p>Mentoring PhD, undergraduate, and high school students in research.</p>
+        </div>
+
+        <div class="card">
+            <h3>DEI Leadership</h3>
+            <p>Leading initiatives to improve inclusivity and lab culture.</p>
+        </div>
 
     </div>
 
-    <div class="divider"></div>
+</section>
 
-    <div class="section">
-        <h2>Beyond Research</h2>
-        <p>
-        I am deeply committed to mentorship, outreach, and building inclusive scientific communities.
-        I co-direct programs that provide STEM opportunities to underserved students and actively contribute
-        to diversity and recruitment initiatives at Stanford.
-        </p>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section">
-        <h2>Contact</h2>
-        <p>
+<!-- CONTACT -->
+<section class="section" id="contact">
+    <h2>Contact</h2>
+    <p>
         <a href="mailto:amaleman@stanford.edu">amaleman@stanford.edu</a><br>
-        <a href="#">Google Scholar</a> / <a href="#">LinkedIn</a>
+        <br>
+        <a href="#" class="button">Google Scholar</a>
     </p>
-    </div>
+</section>
 
-</div>
+<script>
+
+/* SCROLL ANIMATION */
+const sections = document.querySelectorAll('.section');
+
+window.addEventListener('scroll', () => {
+    sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if(top < window.innerHeight - 100){
+            sec.classList.add('visible');
+        }
+    });
+});
+
+</script>
 
 </body>
 </html>
