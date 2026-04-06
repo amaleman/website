@@ -3,268 +3,927 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ashton Aleman</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-
 :root {
-    --accent: #6c63ff;
-    --accent2: #00c2ff;
+  --sage: #4a7c59;
+  --moss: #2d5a3d;
+  --mist: #b8d4c0;
+  --cream: #f6f4ef;
+  --ink: #1c2b22;
+  --warm: #e8e0d0;
+  --gold: #c9a84c;
+  --leaf: #6aaa78;
 }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(to bottom, #f8f9ff, #ffffff);
-    color: #111;
-    overflow-x: hidden;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-/* NAV */
+/* ── NAV ── */
 nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 20px 40px;
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    z-index: 1000;
+  position: fixed;
+  top: 0; width: 100%;
+  padding: 18px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(246,244,239,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(74,124,89,0.12);
 }
-
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.3rem;
+  color: var(--moss);
+}
 nav a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
+  margin-left: 28px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+nav a:hover { opacity: 1; color: var(--sage); }
+
+/* ── HERO ── */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(160deg, #e8f0eb 0%, #f6f4ef 60%, #eae8e0 100%);
 }
 
-/* HERO */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Animated SVG background */
+#hero-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
 }
 
 .hero-content {
-    text-align: center;
-    max-width: 800px;
-    animation: fadeIn 1.2s ease;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  animation: heroFade 1.4s ease both;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.gradient-text {
-    background: linear-gradient(45deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.hero-content h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  color: var(--moss);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.hero-content h1 em {
+  font-style: italic;
+  color: var(--sage);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: #4a5e50;
+  font-weight: 400;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.hero-sub strong {
+  font-weight: 600;
+  color: var(--moss);
 }
 
-.hero p {
-    font-size: 1.2rem;
-    color: #555;
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 2px solid var(--sage);
+  border-radius: 40px;
+  color: var(--sage);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.25s;
+  margin: 6px;
+}
+.btn:hover {
+  background: var(--sage);
+  color: white;
+}
+.btn.filled {
+  background: var(--sage);
+  color: white;
+}
+.btn.filled:hover {
+  background: var(--moss);
+  border-color: var(--moss);
 }
 
-/* SECTION */
+/* ── SECTIONS ── */
 .section {
-    max-width: 1000px;
-    margin: 120px auto;
-    padding: 0 20px;
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 100px 28px;
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 10px;
 }
 
 h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4rem;
+  color: var(--moss);
+  margin-bottom: 36px;
+  line-height: 1.2;
 }
 
-/* CARDS */
+.divider {
+  width: 48px;
+  height: 3px;
+  background: var(--mist);
+  border-radius: 2px;
+  margin-bottom: 36px;
+}
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #3d5044;
+  margin-bottom: 14px;
+}
+.about-meta {
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 4px 24px rgba(45,90,61,0.07);
+}
+.meta-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+.meta-item:last-child { border: none; }
+.meta-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+/* ── CARDS ── */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
 .card {
-    background: white;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-    transition: all 0.3s ease;
-    margin-bottom: 20px;
+  background: white;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(45,90,61,0.06);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  border: 1px solid rgba(74,124,89,0.08);
 }
-
 .card:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(45,90,61,0.12);
+}
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+.card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.25rem;
+  color: var(--moss);
+  margin-bottom: 10px;
+}
+.card p {
+  font-size: 0.91rem;
+  color: #4a5e50;
+  line-height: 1.7;
+}
+.card .tag {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 3px 10px;
+  background: #e8f0eb;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--sage);
+  font-weight: 500;
+  margin-right: 4px;
 }
 
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+/* ── PUBLICATIONS ── */
+.pub-list { display: flex; flex-direction: column; gap: 16px; }
+.pub-card {
+  background: white;
+  border-radius: 14px;
+  padding: 22px 26px;
+  box-shadow: 0 2px 12px rgba(45,90,61,0.05);
+  border-left: 4px solid var(--mist);
+  transition: border-color 0.2s;
+}
+.pub-card:hover { border-left-color: var(--sage); }
+.pub-card .pub-journal {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sage);
+  margin-bottom: 6px;
+}
+.pub-card .pub-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.05rem;
+  color: var(--moss);
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+.pub-card .pub-authors {
+  font-size: 0.83rem;
+  color: #667a6e;
+  line-height: 1.5;
+}
+.pub-card .pub-year {
+  font-size: 0.78rem;
+  color: #9bafa2;
+  margin-top: 4px;
+}
+.pub-card a {
+  font-size: 0.8rem;
+  color: var(--sage);
+  text-decoration: none;
+  font-weight: 500;
+}
+.pub-card a:hover { text-decoration: underline; }
+
+.pub-note {
+  font-size: 0.88rem;
+  color: #667a6e;
+  margin-top: 20px;
+  text-align: center;
+  font-style: italic;
 }
 
-/* IMAGE */
-img {
-    width: 100%;
-    border-radius: 12px;
-    margin-top: 10px;
+/* ── HONORS ── */
+.honors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+.honor-pill {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 10px rgba(45,90,61,0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.honor-dot {
+  width: 10px; height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+  background: var(--leaf);
+  margin-top: 5px;
+}
+.honor-text {
+  font-size: 0.88rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.honor-text a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--mist);
+  transition: color 0.2s, border-color 0.2s;
+}
+.honor-text a:hover {
+  color: var(--sage);
+  border-color: var(--sage);
+}
+.honor-year {
+  font-size: 0.75rem;
+  color: var(--sage);
+  font-weight: 600;
+  margin-top: 2px;
 }
 
-/* BUTTON */
-.button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: linear-gradient(45deg, var(--accent), var(--accent2));
-    color: white;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: 0.3s;
+/* ── OUTREACH ── */
+.outreach-list { display: flex; flex-direction: column; gap: 20px; }
+.outreach-item {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(45,90,61,0.05);
+}
+.outreach-item h3 {
+  font-family: 'DM Serif Display', serif;
+  color: var(--moss);
+  margin-bottom: 6px;
+}
+.outreach-item .dates {
+  font-size: 0.8rem;
+  color: var(--sage);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.outreach-item p {
+  font-size: 0.9rem;
+  color: #4a5e50;
+  line-height: 1.7;
 }
 
-.button:hover {
-    opacity: 0.8;
+/* ── CONTACT ── */
+.contact-inner {
+  background: var(--moss);
+  border-radius: 24px;
+  padding: 56px 48px;
+  text-align: center;
+  color: white;
+}
+.contact-inner h2 { color: var(--mist); margin-bottom: 14px; }
+.contact-inner p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 32px;
+}
+.btn-light {
+  display: inline-block;
+  padding: 12px 28px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-radius: 40px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.25s;
+  margin: 6px;
+}
+.btn-light:hover { background: rgba(255,255,255,0.15); border-color: white; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 32px;
+  font-size: 0.8rem;
+  color: #9bafa2;
 }
 
-/* ANIMATIONS */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+@media (max-width: 700px) {
+  .about-grid { grid-template-columns: 1fr; }
+  nav { padding: 16px 20px; }
+  nav a { margin-left: 14px; font-size: 0.78rem; }
 }
-
 </style>
 </head>
-
 <body>
 
+<!-- NAV -->
 <nav>
-    <div><strong>AA</strong></div>
-    <div>
-        <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#outreach">Outreach</a>
-        <a href="#contact">Contact</a>
-    </div>
+  <div class="nav-logo">AMA</div>
+  <div>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#honors">Honors</a>
+    <a href="#outreach">Outreach</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO with animated SVG -->
 <section class="hero">
-    <div class="hero-content">
-        <h1 class="gradient-text">Ashton Aleman</h1>
-        <p>
-            PhD Candidate @ Stanford<br>
-            Studying how materials behave — and break — in sustainable energy systems
-        </p>
-        <a href="#" class="button">Download CV</a>
+  <svg id="hero-svg" viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <!-- Leaf shapes -->
+      <path id="leaf-a" d="M0,0 C8,-20 28,-22 30,0 C28,18 8,22 0,0Z"/>
+      <path id="leaf-b" d="M0,0 C6,-16 24,-18 26,0 C24,14 6,18 0,0Z"/>
+      <path id="leaf-sm" d="M0,0 C4,-10 16,-12 17,0 C16,9 4,11 0,0Z"/>
+      <!-- Molecule ring -->
+      <circle id="mol-dot" r="5" fill="#4a7c59" opacity="0.35"/>
+    </defs>
+
+    <!-- Soft gradient blobs -->
+    <ellipse cx="200" cy="650" rx="260" ry="180" fill="#b8d4c0" opacity="0.22"/>
+    <ellipse cx="1200" cy="160" rx="300" ry="200" fill="#6aaa78" opacity="0.14"/>
+    <ellipse cx="700" cy="400" rx="400" ry="260" fill="#4a7c59" opacity="0.05"/>
+
+    <!-- ── LARGE BRANCH LEFT ── -->
+    <g transform="translate(80, 780)">
+      <!-- Main stem -->
+      <path d="M0,0 C-10,-120 20,-260 60,-380" stroke="#2d5a3d" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55">
+        <animate attributeName="d" dur="8s" repeatCount="indefinite"
+          values="M0,0 C-10,-120 20,-260 60,-380;
+                  M0,0 C-6,-122 24,-258 64,-378;
+                  M0,0 C-10,-120 20,-260 60,-380" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+      </path>
+      <!-- Branch 1 -->
+      <path d="M25,-120 C60,-150 100,-145 120,-130" stroke="#4a7c59" stroke-width="2" fill="none" opacity="0.5">
+        <animate attributeName="d" dur="7s" begin="0.5s" repeatCount="indefinite"
+          values="M25,-120 C60,-150 100,-145 120,-130;
+                  M25,-120 C62,-148 102,-143 122,-128;
+                  M25,-120 C60,-150 100,-145 120,-130" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+      </path>
+      <!-- Leaves on branch 1 -->
+      <g transform="translate(120,-130) rotate(-20)">
+        <use href="#leaf-a" fill="#4a7c59" opacity="0.6">
+          <animateTransform attributeName="transform" type="rotate" from="0 15 0" to="4 15 0" dur="6s" repeatCount="indefinite" additive="sum" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="0 15 0;4 15 0;0 15 0"/>
+        </use>
+      </g>
+      <g transform="translate(100,-142) rotate(10)">
+        <use href="#leaf-sm" fill="#6aaa78" opacity="0.5">
+          <animateTransform attributeName="transform" type="rotate" from="0 8 0" to="-3 8 0" dur="7s" begin="1s" repeatCount="indefinite" additive="sum" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="0 8 0;-3 8 0;0 8 0"/>
+        </use>
+      </g>
+      <!-- Branch 2 -->
+      <path d="M40,-200 C80,-230 130,-225 148,-205" stroke="#4a7c59" stroke-width="2" fill="none" opacity="0.45">
+        <animate attributeName="d" dur="9s" begin="1s" repeatCount="indefinite"
+          values="M40,-200 C80,-230 130,-225 148,-205;
+                  M40,-200 C82,-228 132,-223 150,-203;
+                  M40,-200 C80,-230 130,-225 148,-205" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+      </path>
+      <g transform="translate(148,-205) rotate(-35)">
+        <use href="#leaf-b" fill="#2d5a3d" opacity="0.5">
+          <animateTransform attributeName="transform" type="rotate" from="0 13 0" to="5 13 0" dur="8s" begin="0.3s" repeatCount="indefinite" additive="sum" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="0 13 0;5 13 0;0 13 0"/>
+        </use>
+      </g>
+      <g transform="translate(132,-220) rotate(15)">
+        <use href="#leaf-sm" fill="#6aaa78" opacity="0.45"/>
+      </g>
+      <!-- Branch 3 -->
+      <path d="M52,-300 C95,-330 140,-318 155,-295" stroke="#4a7c59" stroke-width="1.5" fill="none" opacity="0.4">
+        <animate attributeName="d" dur="10s" begin="2s" repeatCount="indefinite"
+          values="M52,-300 C95,-330 140,-318 155,-295;
+                  M52,-300 C97,-328 142,-316 157,-293;
+                  M52,-300 C95,-330 140,-318 155,-295" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+      </path>
+      <g transform="translate(155,-295) rotate(-25)">
+        <use href="#leaf-a" fill="#4a7c59" opacity="0.45"/>
+      </g>
+      <!-- Top spray leaves -->
+      <g transform="translate(60,-380)">
+        <g transform="rotate(-40)"><use href="#leaf-b" fill="#6aaa78" opacity="0.5">
+          <animateTransform attributeName="transform" type="rotate" from="0 13 0" to="6 13 0" dur="5s" repeatCount="indefinite" additive="sum" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="0 13 0;6 13 0;0 13 0"/>
+        </use></g>
+        <g transform="rotate(0)"><use href="#leaf-a" fill="#2d5a3d" opacity="0.4">
+          <animateTransform attributeName="transform" type="rotate" from="0 15 0" to="-5 15 0" dur="7s" begin="1s" repeatCount="indefinite" additive="sum" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="0 15 0;-5 15 0;0 15 0"/>
+        </use></g>
+        <g transform="rotate(45)"><use href="#leaf-sm" fill="#4a7c59" opacity="0.5"/></g>
+        <g transform="rotate(-70)"><use href="#leaf-sm" fill="#6aaa78" opacity="0.4"/></g>
+      </g>
+    </g>
+
+    <!-- ── BRANCH RIGHT ── -->
+    <g transform="translate(1340, 800)">
+      <path d="M0,0 C10,-100 -20,-220 -50,-340" stroke="#2d5a3d" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.45">
+        <animate attributeName="d" dur="9s" begin="2s" repeatCount="indefinite"
+          values="M0,0 C10,-100 -20,-220 -50,-340;
+                  M0,0 C12,-98 -18,-218 -48,-338;
+                  M0,0 C10,-100 -20,-220 -50,-340" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+      </path>
+      <path d="M-18,-110 C-55,-140 -95,-132 -110,-115" stroke="#4a7c59" stroke-width="2" fill="none" opacity="0.45">
+        <animate attributeName="d" dur="8s" begin="1.5s" repeatCount="indefinite"
+          values="M-18,-110 C-55,-140 -95,-132 -110,-115;
+                  M-18,-110 C-57,-138 -97,-130 -112,-113;
+                  M-18,-110 C-55,-140 -95,-132 -110,-115" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+      </path>
+      <g transform="translate(-110,-115) rotate(200)">
+        <use href="#leaf-a" fill="#4a7c59" opacity="0.55">
+          <animateTransform attributeName="transform" type="rotate" from="0 15 0" to="-4 15 0" dur="7s" repeatCount="indefinite" additive="sum" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="0 15 0;-4 15 0;0 15 0"/>
+        </use>
+      </g>
+      <g transform="translate(-95,-128) rotate(170)">
+        <use href="#leaf-sm" fill="#6aaa78" opacity="0.4"/>
+      </g>
+      <path d="M-30,-210 C-72,-238 -118,-228 -130,-208" stroke="#4a7c59" stroke-width="1.5" fill="none" opacity="0.4"/>
+      <g transform="translate(-130,-208) rotate(210)">
+        <use href="#leaf-b" fill="#2d5a3d" opacity="0.45"/>
+      </g>
+      <g transform="translate(-50,-340)">
+        <g transform="rotate(220)"><use href="#leaf-a" fill="#6aaa78" opacity="0.45"/></g>
+        <g transform="rotate(180)"><use href="#leaf-b" fill="#4a7c59" opacity="0.4"/></g>
+        <g transform="rotate(250)"><use href="#leaf-sm" fill="#2d5a3d" opacity="0.5"/></g>
+      </g>
+    </g>
+
+    <!-- ── FLOATING LEAVES ── -->
+    <!-- Leaf 1 -->
+    <g transform="translate(380, 200)">
+      <use href="#leaf-a" fill="#4a7c59" opacity="0.22">
+        <animateTransform attributeName="transform" type="translate" dur="12s" repeatCount="indefinite"
+          values="0,0; 8,-14; -4,-28; 2,-42; 0,-48" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1" additive="sum"/>
+        <animate attributeName="opacity" dur="12s" repeatCount="indefinite" values="0.22;0.3;0.18;0.08;0"/>
+      </use>
+    </g>
+    <!-- Leaf 2 -->
+    <g transform="translate(900, 120)">
+      <use href="#leaf-sm" fill="#6aaa78" opacity="0.2">
+        <animateTransform attributeName="transform" type="translate" dur="14s" begin="3s" repeatCount="indefinite"
+          values="0,0; -6,-10; 4,-24; -2,-38; 0,-46" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1" additive="sum"/>
+        <animate attributeName="opacity" dur="14s" begin="3s" repeatCount="indefinite" values="0.2;0.28;0.16;0.07;0"/>
+      </use>
+    </g>
+    <!-- Leaf 3 -->
+    <g transform="translate(580, 620)">
+      <use href="#leaf-b" fill="#2d5a3d" opacity="0.18">
+        <animateTransform attributeName="transform" type="translate" dur="10s" begin="5s" repeatCount="indefinite"
+          values="0,0; 5,-12; -3,-26; 1,-40; 0,-50" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1;0.5 0 0.5 1" additive="sum"/>
+        <animate attributeName="opacity" dur="10s" begin="5s" repeatCount="indefinite" values="0.18;0.25;0.12;0.05;0"/>
+      </use>
+    </g>
+
+    <!-- ── MOLECULE / ENERGY NETWORK ── -->
+    <!-- Nodes -->
+    <circle cx="680" cy="290" r="7" fill="#4a7c59" opacity="0.2"/>
+    <circle cx="740" cy="260" r="5" fill="#6aaa78" opacity="0.22"/>
+    <circle cx="800" cy="300" r="6" fill="#4a7c59" opacity="0.18"/>
+    <circle cx="760" cy="340" r="4" fill="#2d5a3d" opacity="0.2"/>
+    <circle cx="700" cy="330" r="5" fill="#6aaa78" opacity="0.16"/>
+    <!-- Bonds -->
+    <line x1="680" y1="290" x2="740" y2="260" stroke="#4a7c59" stroke-width="1.2" opacity="0.18"/>
+    <line x1="740" y1="260" x2="800" y2="300" stroke="#4a7c59" stroke-width="1.2" opacity="0.16"/>
+    <line x1="800" y1="300" x2="760" y2="340" stroke="#4a7c59" stroke-width="1.2" opacity="0.16"/>
+    <line x1="760" y1="340" x2="700" y2="330" stroke="#4a7c59" stroke-width="1.2" opacity="0.14"/>
+    <line x1="700" y1="330" x2="680" y2="290" stroke="#4a7c59" stroke-width="1.2" opacity="0.14"/>
+    <line x1="740" y1="260" x2="760" y2="340" stroke="#4a7c59" stroke-width="1" opacity="0.1" stroke-dasharray="3 3"/>
+
+    <!-- Gentle pulse on center molecule -->
+    <circle cx="740" cy="300" r="20" fill="none" stroke="#6aaa78" stroke-width="1" opacity="0">
+      <animate attributeName="r" dur="4s" repeatCount="indefinite" values="20;36;20"/>
+      <animate attributeName="opacity" dur="4s" repeatCount="indefinite" values="0.18;0;0.18"/>
+    </circle>
+
+    <!-- Water drop symbols (H2O → H2) -->
+    <g transform="translate(460, 450)" opacity="0.16">
+      <path d="M0,-16 C-10,0 -10,14 0,20 C10,14 10,0 0,-16Z" fill="#4a7c59"/>
+    </g>
+    <g transform="translate(920, 560)" opacity="0.14">
+      <path d="M0,-12 C-8,0 -8,11 0,16 C8,11 8,0 0,-12Z" fill="#6aaa78"/>
+    </g>
+    <g transform="translate(300, 350)" opacity="0.12">
+      <path d="M0,-10 C-6,0 -6,9 0,13 C6,9 6,0 0,-10Z" fill="#2d5a3d"/>
+    </g>
+
+    <!-- Circular arrow (sustainability loop) -->
+    <g transform="translate(1050, 550)">
+      <path d="M0,-50 A50,50 0 1,1 -49,7" stroke="#4a7c59" stroke-width="2" fill="none" opacity="0.2" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="20s" repeatCount="indefinite"/>
+      </path>
+      <polygon points="0,-8 -6,4 6,4" fill="#4a7c59" opacity="0.22" transform="translate(-49,7) rotate(20)"/>
+    </g>
+
+    <!-- Small recycling-style arrows upper left -->
+    <g transform="translate(240, 300)" opacity="0.14">
+      <path d="M0,-30 A30,30 0 1,1 -29,4" stroke="#6aaa78" stroke-width="1.5" fill="none" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="16s" repeatCount="indefinite"/>
+      </path>
+    </g>
+  </svg>
+
+  <!-- Text overlay -->
+  <div class="hero-content">
+    <h1>Ashton M. Aleman</h1>
+    <p class="hero-sub">
+      <strong>PhD Candidate · Stanford Chemical Engineering</strong><br>
+      Electrocatalysis &amp; Sustainable Energy
+    </p>
+    <a href="mailto:amaleman@stanford.edu" class="btn filled">Get in Touch</a>
+    <a href="#research" class="btn">Explore Research</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">About</div>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a PhD candidate in Chemical Engineering at Stanford University, working in the <strong>Jaramillo Group</strong> on one of the defining challenges of the clean energy transition: why electrocatalysts degrade — and how to make them last.</p>
+      <p>My thesis focuses on cobalt-based materials during oxygen and hydrogen electrocatalysis. I combine cutting-edge in-situ techniques — EC-MS, ICP-MS, synchrotron-based XAS and GI-XRD — to watch catalysts change in real time under operating conditions.</p>
+      <p>Beyond the lab, I lead outreach programs, DEI initiatives, and mentorship efforts to open doors in STEM for underrepresented students.</p>
     </div>
+    <div class="about-meta">
+      <div class="meta-item">
+        <div class="meta-label">Institution</div>
+        Stanford University, Stanford, CA
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Program</div>
+        Ph.D. in Chemical Engineering · Fall 2021 – Present
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Advisor</div>
+        Professor Thomas F. Jaramillo
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Thesis Topic</div>
+        Degradation Mechanisms in Cobalt-based Materials during O<sub>2</sub> and H<sub>2</sub> Electrocatalysis
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Expected Graduation</div>
+        Spring 2026
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">B.S.E.</div>
+        Chemical Engineering, Univ. of South Carolina · Summa Cum Laude, 2021
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- RESEARCH -->
 <section class="section" id="research">
-    <h2>Research</h2>
-
-    <div class="grid">
-
-        <div class="card">
-            <h3>Electrocatalyst Stability</h3>
-            <p>Understanding degradation mechanisms in cobalt-based materials during OER and HER.</p>
-            <img src="https://images.unsplash.com/photo-1581091215367-59ab6b4d1c3a">
-        </div>
-
-        <div class="card">
-            <h3>Multimodal Characterization</h3>
-            <p>Combining EC-MS, ICP-MS, and synchrotron techniques for real-time insights.</p>
-            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69">
-        </div>
-
-        <div class="card">
-            <h3>Energy Systems</h3>
-            <p>Bridging fundamental electrochemistry with industrial-scale technologies.</p>
-            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231">
-        </div>
-
+  <div class="section-label">Research</div>
+  <h2>What I Work On</h2>
+  <div class="divider"></div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon">⚗️</div>
+      <h3>Electrocatalyst Stability</h3>
+      <p>Investigating degradation mechanisms of cobalt-based thin films during oxygen evolution (OER) and hydrogen evolution (HER) in both acidic and alkaline conditions. Establishing routes to improve Co stability as a function of operating conditions and strategic synthesis.</p>
+      <span class="tag">OER</span><span class="tag">HER</span><span class="tag">Thin Films</span>
     </div>
+    <div class="card">
+      <div class="card-icon">🔬</div>
+      <h3>Multimodal In Situ Characterization</h3>
+      <p>Developing experimental platforms that simultaneously monitor electrocatalytic activity, material stability, and product generation. Combining EC-MS, ICP-MS, AFM, XRD, and synchrotron-based XAS and GI-XRD for real-time surface dynamics.</p>
+      <span class="tag">EC-MS</span><span class="tag">ICP-MS</span><span class="tag">Synchrotron</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Sustainable Energy Systems</h3>
+      <p>Bridging fundamental electrochemistry with industrial-scale technologies — from PEM water electrolyzers and fuel cells to anion exchange membrane devices — to accelerate the clean hydrogen economy.</p>
+      <span class="tag">PEM</span><span class="tag">AEM</span><span class="tag">Clean H₂</span>
+    </div>
+  </div>
 </section>
 
 <!-- PUBLICATIONS -->
 <section class="section" id="publications">
-    <h2>Selected Publications</h2>
+  <div class="section-label">Publications</div>
+  <h2>Peer-Reviewed Publications</h2>
+  <div class="divider"></div>
+  <div class="pub-list">
 
-    <div class="card">
-        <p><strong>Advanced Energy Materials (2025)</strong><br>Time-resolved activity–durability relationships in Co catalysts</p>
+    <div class="pub-card">
+      <div class="pub-journal">Energy &amp; Environmental Science Catalysis · 2026 · In Press</div>
+      <div class="pub-title">NiFeCo-based Catalysts in High Current Zero-Gap Anion Exchange Membrane Water Electrolyzers</div>
+      <div class="pub-authors">Rojas Mendoza, B. M.; Hannagan, R. T.; Kimuyu, S.; Crago, C. F.; Vargas, A.; <strong>Aleman, A. M.</strong>; Schröder, J.; Marin, D. H.; Rios Amador, I.; Shim, J.; Nielander, A. C.; Burke Stevens, M.; Jaramillo, T. F.</div>
     </div>
 
-    <div class="card">
-        <p><strong>JACS (2025)</strong><br>Multimodal in situ characterization of catalyst stability</p>
+    <div class="pub-card">
+      <div class="pub-journal">ACS Catalysis · 2026 · In Press</div>
+      <div class="pub-title">Ternary and Quaternary Nickel-Iron-Oxide-Based Thin Films as Oxygen Evolution Reaction Catalysts in Alkaline Media</div>
+      <div class="pub-authors">Schröder, J.; D'Acunto, G.; Persson, K. A. A.; <strong>Aleman, A. M.</strong>; Ponte, E. L.; Bent, S. F.; Jaramillo, T. F.</div>
     </div>
 
-    <div class="card">
-        <p><strong>Energy & Environmental Science (2025)</strong><br>Insights into degradation in electrolysis systems</p>
+    <div class="pub-card">
+      <div class="pub-journal">ACS Catalysis · 2026</div>
+      <div class="pub-title">Multimodal In Situ Investigation of Anion-Dependent Surface Dynamics of Pd Electrocatalysts during the Oxygen Reduction Reaction in Acidic Media</div>
+      <div class="pub-authors">Vargas, A.*; Kamat, G. A.*; Zander, J.; <strong>Aleman, A. M.</strong>; Schröder, J.; Hannagan, R. T.; et al.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/acscatal.5c09187" target="_blank">doi:10.1021/acscatal.5c09187 →</a></div>
     </div>
 
+    <div class="pub-card">
+      <div class="pub-journal">ACS Energy Letters · 2026</div>
+      <div class="pub-title">Translating Fundamental Insights into Ag-Based Bimetallic Electrocatalysts to Anion-Exchange Membrane Fuel Cells</div>
+      <div class="pub-authors">Schröder, J.*; Douglin, J. C.*; Zamora Zeledón, J. A.*; <strong>Aleman, A. M.</strong>; Liu, M. J.; et al.; Dekel, D. R.; Kasun Kalhara Gunasooriya, G. T.; Burke Stevens, M.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/acsenergylett.5c03664" target="_blank">doi:10.1021/acsenergylett.5c03664 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Journal of the American Chemical Society · 2026</div>
+      <div class="pub-title">MoS₂ Degradation Dynamics under Simulated Diurnal (Photo)electrochemical H₂ Evolution Reaction Conditions</div>
+      <div class="pub-authors">Yap, K. M. K.; Swathilakshmi; Lin, T.; <strong>Aleman, A. M.</strong>; Yan, K.; Hannagan, R. T.; et al.; Nielander, A. C.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/jacs.5c16527" target="_blank">doi:10.1021/jacs.5c16527 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Advanced Energy Materials · 2025</div>
+      <div class="pub-title">Insights into the Acid Stability of Cobalt Electrocatalysts via Time-Resolved Activity-Durability Relationships for Tailored Bimetallic Thin Films</div>
+      <div class="pub-authors"><strong>Aleman, A. M.</strong>; Crago, C. F.; Vargas, A.; Hannagan, R. T.; Reyes, C. H.; Zander, J.; Badr, H. O.; Mule, A. S.; Oriowo, O. A.; Rojas Mendoza, B. M.; Burke Stevens, M.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1002/aenm.202504936" target="_blank">doi:10.1002/aenm.202504936 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Energy &amp; Environmental Science · 2025</div>
+      <div class="pub-title">Diagnosing Mechanisms to Mitigate Anion Exchange Ionomer Degradation during Impure Water Electrolysis</div>
+      <div class="pub-authors">Rios Amador, I.; Hannagan, R. T.; Qiang, A.; Lee, S. W.; Tran, N. T.; Yap, K. M. K.; <strong>Aleman, A. M.</strong>; Marin, D. H.; Rojas Mendoza, B. M.; Burke Stevens, M.; Jaramillo, T. F.; Nielander, A. C.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1039/D5EE03891J" target="_blank">doi:10.1039/D5EE03891J →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">The Journal of Chemical Physics · 2025</div>
+      <div class="pub-title">A Research Database for Experimental Electrocatalysis: Advancing Data Sharing and Reusability</div>
+      <div class="pub-authors">Mahajan, R.; <strong>Aleman, A. M.</strong>; Crago, C. F.; Bhasker-Ranganath, S.; Kreider, M. E.; et al.; Burke Stevens, M.; Voss, J.; Winther, K. T.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1063/5.0280821" target="_blank">doi:10.1063/5.0280821 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">ACS Applied Energy Materials · 2025</div>
+      <div class="pub-title">In Situ Techniques to Understand the Potential- and pH-Dependent Dynamics of Cobalt, Cobalt Nitride, and Mixed Cobalt–Antimony Thin Film Catalysts for Electrochemical Oxygen Reduction</div>
+      <div class="pub-authors">Crago, C. F.; <strong>Aleman, A. M.</strong>; Kamat, G. A.; Mule, A. S.; Hannagan, R. T.; Zhang, S.; Burke Stevens, M.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/acsaem.5c01436" target="_blank">doi:10.1021/acsaem.5c01436 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Energy &amp; Environmental Science · 2025</div>
+      <div class="pub-title">Insights into catalyst degradation during alkaline water electrolysis under variable operation</div>
+      <div class="pub-authors">Márquez, R. A.; Bender, J. T.; <strong>Aleman, A. M.</strong>; Kalokowski, E.; Vy Le, T.; et al.; Resasco, J.; Jaramillo, T. F.; Mullins, C. B.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1039/D5EE02194D" target="_blank">doi:10.1039/D5EE02194D →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">ACS Energy Letters · 2025</div>
+      <div class="pub-title">Tracking Local pH Dynamics during Water Electrolysis via In-line Continuous Flow Raman Spectroscopy</div>
+      <div class="pub-authors">Márquez, R. A.; Bender, J. T.; Da Cunha, S. C.; <strong>Aleman, A. M.</strong>; Sahu, A.; Ganesan, V.; Milliron, D. J.; Resasco, J.; Jaramillo, T. F.; Mullins, C. B.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/acsenergylett.5c00582" target="_blank">doi:10.1021/acsenergylett.5c00582 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Journal of the American Chemical Society · 2025</div>
+      <div class="pub-title">Multimodal in situ Characterization Uncovers Unexpected Stability of a Cobalt Electrocatalyst for Acidic Sustainable Energy Technologies</div>
+      <div class="pub-authors"><strong>Aleman, A. M.</strong>; Crago, C. F.; Kamat, G. A.; Mule, A. S.; Avilés-Acosta, J. E.; Matthews, J. E.; Keyes, N.; Hannagan, R. T.; Nielander, A. C.; Burke Stevens, M.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/jacs.4c16707" target="_blank">doi:10.1021/jacs.4c16707 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Journal of the American Chemical Society · 2025</div>
+      <div class="pub-title">Effects of Iron Impurities and Content on Electrochemical Performance and Oxygen Evolution Selectivity of Nickel Catalysts for Ethanol Oxidation</div>
+      <div class="pub-authors">Crago, C. F.; Li, S.; <strong>Aleman, A. M.</strong>; Siboonruang, T.; Rojas Mendoza, B. M.; Jaramillo, T. F.; Burke Stevens, M.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/jacs.4c15365" target="_blank">doi:10.1021/jacs.4c15365 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">ACS Catalysis · 2024</div>
+      <div class="pub-title">In Situ ORR Dynamics of Non-Precious Transition Metal Electrocatalysts: the Case of Manganese Antimony X-ides</div>
+      <div class="pub-authors">Kamat, G. A.; Kreider, M. E.; Schröder, J.; Dukuly Jr, R. B.; Perryman, J. T.; Joensen, B. O.; Matthews, J. E.; <strong>Aleman, A. M.</strong>; Burke Stevens, M.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1021/acscatal.4c03260" target="_blank">doi:10.1021/acscatal.4c03260 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Advanced Energy Materials · 2024</div>
+      <div class="pub-title">Advancing Insights into Electrochemical Pre-Treatments of Supported Nanoparticle Electrocatalysts by Combining a Design of Experiments Strategy with In Situ Characterization</div>
+      <div class="pub-authors">Mule, A. S.; Tran, K.; <strong>Aleman, A. M.</strong>; Cornejo-Carrillo, Y. E.; Kamat, G. A.; Burke Stevens, M.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1002/aenm.202401939" target="_blank">doi:10.1002/aenm.202401939 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Joule · 2023</div>
+      <div class="pub-title">Hydrogen Production with Seawater-resilient Bipolar Membrane Electrolyzers</div>
+      <div class="pub-authors">Marin, D. H.; Perryman, J. T.; Hubert, M. A.; Lindquist, G. A.; Chen, L.; <strong>Aleman, A. M.</strong>; Kamat, G. A.; Niemann, V. A.; Burke Stevens, M.; Regmi, Y. N.; Boettcher, S. W.; Nielander, A. C.; Jaramillo, T. F.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1016/j.joule.2023.03.005" target="_blank">doi:10.1016/j.joule.2023.03.005 →</a></div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-journal">Journal of The Electrochemical Society · 2022</div>
+      <div class="pub-title">A Mechano-Electrochemical Battery Model that Accounts for Preferential Lithiation Inside Blended Silicon Graphite (Si/C) Anodes</div>
+      <div class="pub-authors">Pereira, D. J.; <strong>Aleman, A. M.</strong>; Weidner, J. W.; Garrick, T. R.</div>
+      <div class="pub-year"><a href="https://doi.org/10.1149/1945-7111/ac554f" target="_blank">doi:10.1149/1945-7111/ac554f →</a></div>
+    </div>
+
+  </div>
+  <p class="pub-note" style="margin-top: 28px;">
+    <a href="https://scholar.google.com/citations?user=6MDqD24AAAAJ&hl=en" target="_blank" class="btn" style="display:inline-block;">View Google Scholar →</a>
+  </p>
+</section>
+
+<!-- HONORS -->
+<section class="section" id="honors">
+  <div class="section-label">Honors &amp; Awards</div>
+  <h2>Recognition</h2>
+  <div class="divider"></div>
+  <div class="honors-grid">
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://www.cas.org/about/futureleaders" target="_blank">CAS Future Leader</a></div><div class="honor-year">2026</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://vpge.stanford.edu/fellowships-funding/dare/fellows/2025" target="_blank">Stanford DARE Fellow (Diversifying Academia, Recruiting Excellence)</a></div><div class="honor-year">2025</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://deanofstudents.stanford.edu/lyons/2025-james-w-lyons-award-service-awardees/ashton-aleman" target="_blank">Stanford James W. Lyons Award for Service</a></div><div class="honor-year">2025</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://alumni.stanford.edu/students/grad/graduate-awards/" target="_blank">Stanford Community Impact Award</a></div><div class="honor-year">2025</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://cheme.stanford.edu/news/ashton-aleman-student-spotlight" target="_blank">Stanford Chemical Engineering Department Student Spotlight</a></div><div class="honor-year">2025</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text">SUNCAT Summer Institute Award-Winning Poster (top 6 of 105)</div><div class="honor-year">2025</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://cheme.stanford.edu/news/congratulations-alexandra-ramos-ashton-aleman-brendan-wirtz-crystal-chen-2024-chemical" target="_blank">Stanford Chemical Engineering Service Leadership Award</a></div><div class="honor-year">2024</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text">Stanford JEDI Initiative Funding Award</div><div class="honor-year">2024</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://vpge.stanford.edu/fellowships-funding/current-vpge-fellows/all-2021-vpge-fellows" target="_blank">EDGE Stanford Fellow</a></div><div class="honor-year">2021</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://sc.edu/study/colleges_schools/engineering_and_computing/news_events/news/2021/2021-outstanding-seniors.php" target="_blank">UofSC Chemical Engineering Outstanding Senior Award</a></div><div class="honor-year">2021</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text">Phi Beta Kappa Honors Society</div><div class="honor-year">2020</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text">Tau Beta Pi Engineering Honors Society</div><div class="honor-year">2019</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text"><a href="https://grad.rutgers.edu/diversity-and-outreach/undergraduate-resources-and-summer-program/rise-summer-research-program-3" target="_blank">RISE at Rutgers Scholar</a></div><div class="honor-year">2019</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text">Pfizer American Chemical Society Scholar</div><div class="honor-year">2017</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text">Palmetto Fellows Scholar</div><div class="honor-year">2017</div></div></div>
+    <div class="honor-pill"><div class="honor-dot"></div><div><div class="honor-text">NCWIT Award for Aspirations in Computing – SC Winner</div><div class="honor-year">2017</div></div></div>
+  </div>
 </section>
 
 <!-- OUTREACH -->
 <section class="section" id="outreach">
-    <h2>Leadership & Outreach</h2>
+  <div class="section-label">Leadership &amp; Outreach</div>
+  <h2>Beyond the Lab</h2>
+  <div class="divider"></div>
+  <div class="outreach-list">
 
-    <div class="grid">
-
-        <div class="card">
-            <h3>SSTEP Program</h3>
-            <p>Co-directing STEM outreach to underserved high school students.</p>
-        </div>
-
-        <div class="card">
-            <h3>Mentorship</h3>
-            <p>Mentoring PhD, undergraduate, and high school students in research.</p>
-        </div>
-
-        <div class="card">
-            <h3>DEI Leadership</h3>
-            <p>Leading initiatives to improve inclusivity and lab culture.</p>
-        </div>
-
+    <div class="outreach-item">
+      <h3>Stanford Summit Tahoma Expeditions Program (SSTEP)</h3>
+      <div class="dates">Program Co-Director · Fall 2023 – Present</div>
+      <p>Co-directing an annual program that brings ~45 underserved local high school students to Stanford for hands-on STEM exposure. Recruited ~46 Stanford researchers from 12 departments across two partner high schools (Summit Tahoma and Summit Everest). Responsibilities span program development, student and mentor recruitment, science demonstrations, and career day panels.</p>
     </div>
 
+    <div class="outreach-item">
+      <h3>Stanford ChemE Research Experience for Undergraduates (REU)</h3>
+      <div class="dates">Program Co-Coordinator · Summer 2025</div>
+      <p>Planned and executed programming for 17 REU participants, including research talks, educational outings, community events, and a formal poster session. Delivered presentations on sustainable energy research and effective poster design.</p>
+    </div>
+
+    <div class="outreach-item">
+      <h3>DEI Committee — Jaramillo Group</h3>
+      <div class="dates">Committee Lead · Fall 2022 – Present</div>
+      <p>Developed communication channels for lab members to report issues, led interactive two-hour DEI workshops, crafted mentorship subcommittee structures, and met regularly with lab advisor to improve lab culture and inclusivity.</p>
+    </div>
+
+    <div class="outreach-item">
+      <h3>Bridge to Dreams Program (The Dream Project)</h3>
+      <div class="dates">Mentor · Summer 2025</div>
+      <p>Mentored a first-generation high school student over 8 weeks, supporting resume writing, university and scholarship essays, and college application portfolio development.</p>
+    </div>
+
+    <div class="outreach-item">
+      <h3>Mentorship — Jaramillo Group</h3>
+      <div class="dates">Ongoing · Spring 2023 – Present</div>
+      <p>Mentored 6 PhD students and 1 undergraduate researcher through rotation projects, qualifying exams, and ongoing research. Hosted weekly or biweekly one-on-ones covering wellness, research updates, brainstorming, professional development, and manuscript and presentation preparation.</p>
+    </div>
+
+  </div>
 </section>
 
 <!-- CONTACT -->
 <section class="section" id="contact">
-    <h2>Contact</h2>
-    <p>
-        <a href="mailto:amaleman@stanford.edu">amaleman@stanford.edu</a><br>
-        <br>
-        <a href="#" class="button">Google Scholar</a>
-    </p>
+  <div class="contact-inner">
+    <div class="section-label" style="color: var(--mist);">Contact</div>
+    <h2>Let's Connect</h2>
+    <a href="mailto:amaleman@stanford.edu" class="btn-light">amaleman@stanford.edu</a>
+    <a href="https://www.linkedin.com/in/ashtonaleman/" target="_blank" class="btn-light">LinkedIn →</a>
+  </div>
 </section>
 
+<footer>
+  © 2026 Ashton Aleman · Stanford University
+</footer>
+
 <script>
-
-/* SCROLL ANIMATION */
+// Scroll-triggered section reveal
 const sections = document.querySelectorAll('.section');
-
-window.addEventListener('scroll', () => {
-    sections.forEach(sec => {
-        const top = sec.getBoundingClientRect().top;
-        if(top < window.innerHeight - 100){
-            sec.classList.add('visible');
-        }
-    });
-});
-
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.08 });
+sections.forEach(s => io.observe(s));
 </script>
 
 </body>
